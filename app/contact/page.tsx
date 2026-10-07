@@ -1,0 +1,9 @@
+import Link from 'next/link';
+import { Label, PageIntro } from '@/components/site';
+import { company, hasBusinessEmail } from '@/lib/company';
+import { pageMetadata } from '@/lib/metadata';
+export const metadata = pageMetadata('Contact', 'Discuss a software project, an existing codebase, or an integration and automation need with the engineering team.', '/contact/');
+export default function Contact() { return <>
+  <PageIntro label="Contact" title={<>Tell us what<br/>needs to <em>work.</em></>}><p>You do not need a finished brief. A description of the problem, what exists today and what you want to change is a useful place to start.</p></PageIntro>
+  <section className="contact-content container"><div className="contact-details"><Label>Business enquiries</Label>{hasBusinessEmail ? <a className="contact-email" href={`mailto:${company.email}`}>{company.email}</a> : <><p className="contact-email placeholder">{company.email}</p><p className="draft-note">The business email has not yet been provided. This preview does not accept enquiries.</p></>}<p>For company registration and operator details, visit <Link className="inline-link" href="/company-information/">Company information</Link>.</p></div><div className="contact-guide"><h2>A few useful details.</h2><p>Include whatever you already know:</p><ul className="work-list"><li>What your business or product does</li><li>The problem you need to solve</li><li>Any existing software or systems involved</li><li>Known timing, budget or technical constraints</li></ul><p className="muted">Please avoid sending credentials, personal datasets or confidential files in an initial enquiry. Those can be discussed once an appropriate way to share them is agreed.</p><div className="contact-next"><Label>What happens next</Label><p>The initial discussion is about understanding the problem and whether the work is a good fit. Scope and next steps follow from that conversation.</p></div></div></section>
+</>; }

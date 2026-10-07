@@ -1,0 +1,14 @@
+import { LegalPage } from '@/components/legal';
+import { company } from '@/lib/company';
+import { pageMetadata } from '@/lib/metadata';
+export const metadata = pageMetadata('Terms of use', 'Terms governing use of the corporate website, with project services governed by separate written agreements.', '/terms/');
+export default function Terms() { return <LegalPage title="Terms of use" intro="These terms concern this corporate website. Software engineering engagements are governed by a separate written agreement." sections={[
+  {id:'operator',title:'Website operator',content:<><p>This website is operated by {company.legalName}, registered in {company.jurisdiction}, registration number {company.registration}, at {company.address}.</p><p>Contact: {company.email}.</p></>},
+  {id:'purpose',title:'Purpose of the website',content:<p>The website provides general information about product engineering, software modernization, integrations and automation services. Descriptions are examples of capabilities, rather than an offer to deliver a particular scope, price or result.</p>},
+  {id:'engagements',title:'Service engagements',content:<p>Contacting the company does not create a service agreement. Scope, fees, deliverables, timing, intellectual property, confidentiality and support arrangements are established in the written agreement for each engagement.</p>},
+  {id:'use',title:'Acceptable use',content:<p>Use the website lawfully. Do not attempt unauthorized access, interfere with its operation, introduce malicious software or misuse the company’s identity or website content.</p>},
+  {id:'content',title:'Website content',content:<><p>Website text, branding and other materials may be protected by intellectual property laws. Third-party rights remain with their respective owners.</p><p>[CONFIRM THE OPERATOR’S OWNERSHIP AND ANY LICENSE TERMS APPLICABLE TO WEBSITE MATERIALS]. Rights to client software are addressed separately in project agreements.</p></>},
+  {id:'links',title:'External links',content:<p>Where external links are provided, the destination is operated by a separate party. Review its own terms and privacy information before using it.</p>},
+  {id:'availability',title:'Accuracy and availability',content:<><p>Website information can change and should be confirmed when discussing a project. The website does not provide individualized technical or legal advice.</p><p>[CONFIRM ANY PERMITTED WARRANTY DISCLAIMERS AND LIABILITY PROVISIONS UNDER APPLICABLE LAW]. These terms must not exclude rights or responsibilities that cannot lawfully be excluded.</p></>},
+  {id:'law',title:'Applicable law and questions',content:<><p>[GOVERNING LAW AND DISPUTE RESOLUTION — TO BE CONFIRMED FOR THE REGISTERED ENTITY AND APPLICABLE LAW].</p><p>Questions about these terms can be directed to {company.email}. Updates should be identified by the effective date above.</p></>},
+]} />; }

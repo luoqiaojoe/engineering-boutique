@@ -1,0 +1,10 @@
+import { LegalPage } from '@/components/legal';
+import { company } from '@/lib/company';
+import { pageMetadata } from '@/lib/metadata';
+export const metadata = pageMetadata('Company information', 'Website operator, registered company details, business activities and contact information.', '/company-information/');
+export default function CompanyInformation() { return <LegalPage title="Company information" intro="The legal entity operating this website and the nature of its business." sections={[
+  {id:'identity',title:'Registered company',content:<dl className="company-table"><div><dt>Legal company name</dt><dd>{company.legalName}</dd></div><div><dt>Registration number</dt><dd>{company.registration}</dd></div><div><dt>Registration jurisdiction</dt><dd>{company.jurisdiction}</dd></div><div><dt>Registered address</dt><dd>{company.address}</dd></div><div><dt>Authorized representative</dt><dd>[AUTHORIZED REPRESENTATIVE — IF REQUIRED]</dd></div><div><dt>Tax / VAT number</dt><dd>[TAX / VAT NUMBER — IF APPLICABLE]</dd></div></dl>},
+  {id:'business',title:'Business activities',content:<><p>The company provides software engineering services to startups, small and mid-sized businesses, and existing product teams.</p><p>Services comprise product engineering, software modernization, and integrations and automation. Typical work includes SaaS products, web applications, internal tools, customer portals, APIs, backend services and business data workflows.</p><p>Work is delivered through agreed client engagements, with scope, responsibilities and commercial terms documented in separate agreements.</p></>},
+  {id:'contact',title:'Business contact',content:<dl className="company-table"><div><dt>Email</dt><dd>{company.email}</dd></div><div><dt>Phone</dt><dd>{company.phone}</dd></div><div><dt>Website</dt><dd>[OFFICIAL WEBSITE DOMAIN]</dd></div></dl>},
+  {id:'disclosures',title:'Additional disclosures',content:<p>[CONFIRM ANY ADDITIONAL COMPANY DISCLOSURES REQUIRED IN THE REGISTRATION JURISDICTION, INCLUDING REGISTER AUTHORITY AND STATUTORY CONTACT REQUIREMENTS].</p>},
+]} />; }
