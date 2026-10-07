@@ -1,28 +1,34 @@
 # Engineering Boutique
 
-Seven-page corporate website built with Next.js, TypeScript and Tailwind CSS. Pages are statically exported; no database, analytics, enquiry processor or invented case studies are included.
+包含七个页面的公司官网，使用 Next.js、TypeScript 和 Tailwind CSS 构建。页面采用静态导出；未接入数据库、访问分析或咨询消息处理服务，也没有虚构案例。
 
-## Local development
+## 本地开发与部署
 
-`npm ci`, then `npm run dev`. For delivery: `npm run typecheck`, `npm run build`, `npm run verify`. Deploy the `out/` directory to a static host supporting directory index routes and a custom `404.html`.
+先运行 `npm ci` 安装依赖，再运行 `npm run dev` 启动本地开发预览。交付检查依次运行：`npm run typecheck`、`npm run build`、`npm run verify`。将 `out/` 目录部署到支持目录首页路由和自定义 `404.html` 的静态托管服务。
 
-## Confirm before public launch
+### GitHub Pages
 
-The code is complete for the requested informational site. The business identity and legal content remain intentionally incomplete until verified facts are provided.
+自动部署配置位于 `.github/workflows/pages.yml`。仓库的 Pages 发布来源应设置为 **GitHub Actions**。推送到 `main` 分支或手动运行该工作流，会依次安装依赖、检查类型、构建、验证静态页面并部署。
 
-1. Set the approved brand name and verified entity details in `lib/company.ts`. The current display name is a descriptive working identity.
-2. Replace the business email. The contact page automatically becomes a direct `mailto:` link when a valid address is configured; no message is sent by the website and no submission backend is implied.
-3. Set `SITE_URL` to the verified origin when building. This controls canonical links and the seven-entry sitemap.
-4. Complete and review all bracketed fields in Privacy, Terms and Company Information, including effective dates, providers, retention, processing locations and jurisdiction-specific requirements.
-5. Set `company.publicReady` to `true` only after these facts and pages are confirmed. Until then pages emit `noindex, nofollow`, `robots.txt` disallows crawling and Organization JSON-LD is omitted. After enabling, valid organization information is emitted without fabricated facts.
-6. Remove the optional phone field if no phone number is published. Verify email links, legal disclosures, the public domain and hosting-level security headers after final configuration.
+工作流从 GitHub Pages 配置中读取正式地址和仓库路径，自动设置 `SITE_URL` 与 `NEXT_PUBLIC_BASE_PATH`。本地模拟仓库路径部署时，构建和验证都需使用相同的两个环境变量。根域名部署时，`NEXT_PUBLIC_BASE_PATH` 留空。
 
-No external fonts or imagery are required. Typography uses local sans-serif and Georgia. The client-side header handles mobile disclosure, route changes and Escape; the rest of the site uses server-rendered semantic content.
+## 正式上线前需确认
 
-## Research and direction
+所要求的信息展示型网站代码已经完成。公司身份信息和法律内容仍保留待补齐项，需要提供经过确认的真实资料。
 
-- Portaeu: clear service explanations, business context and delivery model. Avoid borrowed geographic claims, proprietary products and broad service expansion.
-- Kirin: typographic hierarchy, space and numbered service rhythm. Avoid its huge decorative graphics, marquee, extra practices and unverifiable credentials.
-- Wahringer: direct small-team positioning and concrete business situations. Avoid its client work, schedules, status dashboard and biographies.
+1. 在 `lib/company.ts` 中填写已确认的品牌名称和真实公司主体信息。当前展示名称只是描述性的暂用名称。
+2. 替换业务邮箱。配置有效邮箱后，联系页会自动显示可直接打开邮件客户端的 `mailto:` 链接；网站本身不发送消息，也未接入表单提交后端。
+3. 构建时将 `SITE_URL` 设置为经过确认的网站源地址。这项配置用于生成规范链接（canonical）和包含七个页面的站点地图。
+4. 补齐并审核 Privacy、Terms 和 Company Information 页面中的所有方括号占位项，包括生效日期、服务商、数据保留期限、数据处理地点及注册地的法律要求。
+5. 只有在上述资料和页面确认后，才将 `company.publicReady` 改为 `true`。此前，页面输出 `noindex, nofollow`，`robots.txt` 禁止抓取，并且不输出 Organization JSON-LD 结构化数据。开启后，网站会输出已填写的公司信息，不补造事实。
+6. 如果不公开电话号码，删除可选电话字段。完成最终配置后，检查邮箱链接、法律披露、正式域名和托管服务的安全响应头。
 
-Original direction: white paper, ink typography, a restrained red accent, serif emphasis and fine rules. Homepage narrative: business → capabilities → concrete needs → working model → engineering principles → small-team structure → contact. Credibility comes from specific explanations rather than social proof.
+网站不依赖外部字体或图片，使用系统无衬线字体和 Georgia 字体。页眉的客户端组件负责手机菜单展开、页面切换后的菜单关闭，以及 Escape 键关闭菜单；其余页面内容使用服务端渲染的语义化 HTML。
+
+## 参考研究与设计方向
+
+- Portaeu：参考清晰的服务说明、业务背景和交付模式。不借用其地域声明、自有产品，也不扩大服务范围。
+- Kirin：参考字体层级、留白和编号式服务展示节奏。不采用其巨幅装饰图形、滚动跑马灯、额外服务分类或无法核实的资历声明。
+- Wahringer：参考直接的小团队定位和具体业务场景。不借用其客户项目、排期、状态面板或人物介绍。
+
+独立视觉方向：白色背景、深墨色文字、克制的红色强调、衬线字体重点和细分隔线。首页内容顺序：业务说明 → 能力方向 → 具体需求 → 工作方式 → 工程原则 → 小团队结构 → 联系入口。通过具体说明建立可信度，不依赖客户背书或规模数据。

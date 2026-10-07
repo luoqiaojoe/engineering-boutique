@@ -1,4 +1,4 @@
 import type { MetadataRoute } from 'next';
-import { validOrigin } from '@/lib/company';
+import { siteBaseUrl } from '@/lib/company';
 export const dynamic = 'force-static';
-export default function sitemap(): MetadataRoute.Sitemap { return validOrigin ? ['/', '/capabilities/', '/about/', '/contact/', '/privacy/', '/terms/', '/company-information/'].map(path => ({url:`${validOrigin}${path}`})) : []; }
+export default function sitemap(): MetadataRoute.Sitemap { return siteBaseUrl ? ['/', '/capabilities/', '/about/', '/contact/', '/privacy/', '/terms/', '/company-information/'].map(path => ({url:`${siteBaseUrl}${path}`})) : []; }
